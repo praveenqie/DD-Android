@@ -1,7 +1,10 @@
 package com.example.developerdiary.ui.home;
 
+import android.content.Context;
+
 import com.example.developerdiary.api.ApiService;
 import com.example.developerdiary.api.ApiUtils;
+import com.example.developerdiary.api.AuthInterceptor;
 import com.example.developerdiary.login.dto.LoginResponse;
 import com.example.developerdiary.login.service.LoginService;
 import com.example.developerdiary.ui.dto.Tutorial;
@@ -15,9 +18,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeModel implements HomeService.model {
+
     @Override
     public void FetchAllTutorials(HomeService.OnFetchTutorialFinishedListener listener) {
-        ApiService apiService = ApiUtils.getApiService();
+
+
+        ApiService apiService = ApiUtils.getApiService(false);
         Call<List<Tutorial>> call = apiService.findAllTutorial();
         call.enqueue(new Callback<List<Tutorial>>() {
             @Override

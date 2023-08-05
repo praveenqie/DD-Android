@@ -10,12 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.developerdiary.api.ApiUtils;
 import com.example.developerdiary.databinding.FragmentGalleryBinding;
 
 public class GalleryFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        ApiUtils.initialize(getContext());
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         GalleryViewModel galleryViewModel =

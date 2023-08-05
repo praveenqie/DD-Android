@@ -8,6 +8,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -15,7 +16,7 @@ public interface ApiService {
     @POST("/api/v1/auth/login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
-    @POST("/api/v1/tutorial")
+    @GET("/api/v1/tutorial")
     Call<List<Tutorial>> findAllTutorial();
 
 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.developerdiary.R;
+import com.example.developerdiary.api.ApiUtils;
 import com.example.developerdiary.database.UserRepository;
 import com.example.developerdiary.login.dto.LoginRequest;
 import com.example.developerdiary.login.dto.LoginResponse;
@@ -35,7 +36,9 @@ public class LoginFragment extends Fragment implements  LoginService.View {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        ApiUtils.initialize(getContext());
     }
 
     @Override
@@ -79,9 +82,11 @@ public class LoginFragment extends Fragment implements  LoginService.View {
         Log.d("Login response",loginResponse.toString());
         UserRepository userRepository = new UserRepository(getContext());
         userRepository.open();
+        userRepository.deleteUserData();
         userRepository.addUser(loginResponse.getUsersData().getEmail(),
                 loginResponse.getAccess_token(),loginResponse.getRefresh_token(),loginResponse.getUsersData().getFirstname(),
                 loginResponse.getUsersData().getLastname());
+        userRepository.close();
         communicationListener.onLoginSuccess();
     }
 

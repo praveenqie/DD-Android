@@ -41,7 +41,11 @@ public class UserRepository {
         return database.insert(DatabaseHelper.TABLE_CREDENTIALS, null, values);
     }
 
-    public LoginResponse getAllUsers() {
+    public void deleteUserData(){
+        database.delete(DatabaseHelper.TABLE_CREDENTIALS,null,null);
+    }
+
+    public LoginResponse getUser() {
         LoginResponse userList = new LoginResponse();
 
         Cursor cursor = database.query(DatabaseHelper.TABLE_CREDENTIALS,
@@ -65,6 +69,8 @@ public class UserRepository {
                 ,cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL))
                 ,cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRSTNAME))
                 ,cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LASTNAME))));
+        user.setAccess_token(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ACCESS_TOKEN)));
+        user.setRefresh_token(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_REFRESH_TOKEN)));
        return user;
     }
 }

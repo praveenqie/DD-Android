@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.developerdiary.R;
+import com.example.developerdiary.api.ApiUtils;
 import com.example.developerdiary.databinding.FragmentHomeBinding;
 import com.example.developerdiary.ui.adapter.ListGridAdapter;
 import com.example.developerdiary.ui.dto.Tutorial;
@@ -31,30 +32,21 @@ public class HomeFragment extends Fragment implements HomeService.view {
     private ProgressBar progressBar;
     ArrayList<Tutorial> tutorialList
             = new ArrayList<>();
+    private ListGridAdapter itemAdapter;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        ApiUtils.initialize(getContext());
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         fetchAllTutorials();
 
-        Tutorial tutorial = new Tutorial("java","JAVA OPPS");
-        Tutorial tutorial1 = new Tutorial("2","2 OPPS");
-        Tutorial tutorial3 = new Tutorial("3","2 OPPS");
-        Tutorial tutorial4 = new Tutorial("4","2 OPPS");
-        Tutorial tutorial5 = new Tutorial("5","2 OPPS");
-        Tutorial tutorial6 = new Tutorial("6","2 OPPS");
-        Tutorial tutorial7 = new Tutorial("7","2 OPPS");
-        Tutorial tutorial8 = new Tutorial("8","2 OPPS");
-        tutorialList.add(tutorial);
-        tutorialList.add(tutorial1);
-        tutorialList.add(tutorial3);
-        tutorialList.add(tutorial4);
-        tutorialList.add(tutorial5);
-        tutorialList.add(tutorial6);
-        tutorialList.add(tutorial7);
-        tutorialList.add(tutorial8);
         // Assign employeelist to ItemAdapter
-        ListGridAdapter itemAdapter = new ListGridAdapter(tutorialList);
+        itemAdapter = new ListGridAdapter(tutorialList);
         // Set the LayoutManager that
         // this RecyclerView will use.
         RecyclerView recyclerView
@@ -82,7 +74,9 @@ public class HomeFragment extends Fragment implements HomeService.view {
 
     @Override
     public void SuccessFetchAllTutorials(List<Tutorial> tutorialList) {
-        tutorialList = tutorialList;
+        this.tutorialList.clear();
+        this.tutorialList.addAll(tutorialList);
+        itemAdapter.notifyDataSetChanged();
     }
 
     @Override

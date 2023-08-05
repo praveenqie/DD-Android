@@ -34,20 +34,37 @@ public class AuthInterceptor implements Interceptor {
         if (response.code() == 401 && authToken != null) {
             // Token is expired; handle token refresh here
 
-            // Get the new token after refreshing
-            String newToken = "YOUR_REFRESHED_TOKEN_HERE";
+            // Synchronize token refresh to avoid multiple concurrent refresh attempts
+            synchronized (this) {
+                // Assuming you have a method to refresh the token and obtain the new token
+                String newToken = refreshToken();
 
-            // Update the AuthInterceptor with the new token
-            setAuthToken(newToken);
+                if (newToken != null) {
+                    // Update the AuthInterceptor with the new token
+                    setAuthToken(newToken);
 
-            // Retry the request with the new token
-            Request retryRequest = newRequest.newBuilder()
-                    .header("Authorization", "Bearer " + newToken)
-                    .build();
+                    // Retry the request with the new token
+                    Request retryRequest = newRequest.newBuilder()
+                            .header("Authorization", "Bearer " + newToken)
+                            .build();
 
-            return chain.proceed(retryRequest);
+                    return chain.proceed(retryRequest);
+                } else {
+                    // If token refresh fails, you can handle the logout or other error flow
+                    // For example:
+                    // logoutUser();
+                    // Or show an error message to the user
+                }
+            }
         }
 
         return response;
+    }
+
+    // Method to refresh the token (replace this with your token refresh logic)
+    private String refreshToken() {
+        // TODO: Implement your token refresh logic here and return the refreshed token
+        // If refresh is successful, return the new token; otherwise, return null
+        return "YOUR_REFRESHED_TOKEN_HERE";
     }
 }

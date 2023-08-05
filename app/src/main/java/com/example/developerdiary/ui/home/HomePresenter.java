@@ -1,5 +1,7 @@
 package com.example.developerdiary.ui.home;
 
+import android.content.Context;
+
 import com.example.developerdiary.ui.dto.Tutorial;
 import com.example.developerdiary.ui.service.HomeService;
 

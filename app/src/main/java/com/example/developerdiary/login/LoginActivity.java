@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.example.developerdiary.NavigationDrawerActivity;
 import com.example.developerdiary.R;
+import com.example.developerdiary.api.ApiUtils;
 import com.example.developerdiary.login.adapter.LoginViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,6 +21,8 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.Fr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //initializeApiUtils();
+        ApiUtils.initialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
@@ -47,6 +50,8 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.Fr
             }
         });
     }
+
+
 
     @Override
     public void onLoginSuccess() {

@@ -12,15 +12,15 @@
         android:layout_height="match_parent">
 
         <!--TextView-->
-        <TextView
-            android:id="@+id/text_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="Fragment 1"/>
+<!--        <TextView-->
+<!--            android:id="@+id/text_home"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="Fragment 1"/>-->
 
         <!--RecyclerView-->
         <androidx.recyclerview.widget.RecyclerView

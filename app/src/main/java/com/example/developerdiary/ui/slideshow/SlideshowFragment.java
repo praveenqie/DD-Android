@@ -10,12 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.developerdiary.api.ApiUtils;
 import com.example.developerdiary.databinding.FragmentSlideshowBinding;
 
 public class SlideshowFragment extends Fragment {
 
     private FragmentSlideshowBinding binding;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        ApiUtils.initialize(getContext());
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         SlideshowViewModel slideshowViewModel =
