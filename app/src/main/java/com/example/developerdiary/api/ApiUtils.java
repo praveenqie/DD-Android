@@ -18,7 +18,7 @@ public class ApiUtils {
     public static void initialize(Context context) {
         ApiUtils.context = context.getApplicationContext();
     }
-    private static final String BASE_URL = "http://192.168.0.108:8080/";
+    private static final String BASE_URL = "http://192.168.0.106:8080/";
 
     public ApiUtils(Context context) {
         context = context;

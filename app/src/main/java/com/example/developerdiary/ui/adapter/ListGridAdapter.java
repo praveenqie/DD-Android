@@ -31,7 +31,7 @@ public class ListGridAdapter extends RecyclerView.Adapter<ListGridAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Tutorial tutorial = tutorialList.get(position);
         holder.title.setText(tutorial.getTitle());
-        holder.description.setText(tutorial.getDescription());
+       // holder.description.setText(tutorial.getDescription());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ListGridAdapter extends RecyclerView.Adapter<ListGridAdapter.MyView
         public MyViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
-            description = itemView.findViewById(R.id.description);
+           // description = itemView.findViewById(R.id.description);
         }
     }
 }

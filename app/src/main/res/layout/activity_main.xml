@@ -5,16 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#e8f9ff"
     tools:context=".login.LoginActivity">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:adjustViewBounds="true"
-        android:background="@color/lightblue"
-        android:src="@drawable/bg2"
+        android:background="#30b0e1"
+        android:src="@drawable/developers_life"
         android:id="@+id/image"
         tools:ignore="MissingConstraints" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/nav_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Developer Diary"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingTop="10dp"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="380dp"
         android:layout_height="0dp"
@@ -25,6 +36,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".55"
         app:layout_constraintVertical_bias="1">
+
+
+
         <androidx.viewpager2.widget.ViewPager2
             android:layout_width="match_parent"
             android:layout_height="400dp"
@@ -35,6 +49,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
